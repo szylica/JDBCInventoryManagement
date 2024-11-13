@@ -1,14 +1,14 @@
-### Inventory manager 
+# Inventory manager 
 
 ## This is a repository where I will mainly be learning JDBC.
 
-# Building tool:
+### Building tool:
   * Maven
 
-# Java 21
+### Java 21
 
-# Database:
+### Database:
   * MySQL
 
-# The database I will be working with was taken from
+### The database I will be working with was taken from
   * https://www.mysqltutorial.org/getting-started-with-mysql/mysql-sample-database/
