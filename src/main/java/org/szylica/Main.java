@@ -27,6 +27,5 @@ public class Main {
          */
 
         RegisterPage reg = new RegisterPage();
-        reg.delete();
     }
 }

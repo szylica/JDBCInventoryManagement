@@ -12,7 +12,7 @@ public class DatabaseConnection {
         try {
             Connection connection = DriverManager.getConnection(url, user, password);
             if (connection != null && !connection.isClosed()) {
-                System.out.println("Połączenie z bazą danych powiodło się.");
+                System.out.println("Połączenie z bazą danych powiodło się. (in connect method) ");
                 return connection;
             }
         } catch (SQLException e) {
@@ -37,7 +37,7 @@ public class DatabaseConnection {
     }
 
     public void selectRecord(String stmt){
-        /*
+
         try(Connection connection = DriverManager.getConnection(url, user, password)){
             if (connection != null) {
 
@@ -50,10 +50,61 @@ public class DatabaseConnection {
         } catch (SQLException e){
             e.printStackTrace();
         }
-         */
+
+    }
+
+    // Helper method, which helps me to get name of primary key column
+    public String getPrimaryKeyColumnName(String tableName) {
+        String primaryKeyColumn = null;
+
+        try (Connection connection = connect()) {
+
+
+            DatabaseMetaData metaData = connection.getMetaData();
+
+            // Pobranie kluczy głównych dla danej tabeli
+            ResultSet resultSet = metaData.getPrimaryKeys(null, null, tableName);
+
+            // Jeśli klucz główny istnieje, pobierz nazwę kolumny
+            if (resultSet.next()) {
+                primaryKeyColumn = resultSet.getString("COLUMN_NAME");
+            }
+
+            resultSet.close(); // Zamknięcie resultSet
+
+        } catch (SQLException e) {
+            System.err.println("Błąd połączenia z bazą danych: " + e.getMessage());
+        }
+
+        return primaryKeyColumn;
+    }
+
+    //TODO: sprawdzanie czy przekazana w argumencie tabela istnieje
+    public int returnMaxId(String table){
+
+
+        String idColumnName = getPrimaryKeyColumnName(table);
+        String stmt = "SELECT MAX("+idColumnName+") AS max_id FROM "+table+";";
+        int maxId = -1;
+
+        try(Connection connection = DriverManager.getConnection(url, user, password);
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(stmt)){
+
+            if (resultSet.next()) {
+                maxId = resultSet.getInt("max_id");
+            }
+
+        } catch (SQLException e){
+            System.err.println("Błąd połączenia z bazą danych: " + e.getMessage());
+        }
+
+        return maxId;
     }
 
     public void updateRecord(String stmt){}
+
+
     public void deleteRecord(String tableName, String columnName, Object value){
         String stmt = "DELETE FROM " + tableName + " WHERE " + columnName + " = ?";
 
