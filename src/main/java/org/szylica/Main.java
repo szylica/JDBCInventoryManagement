@@ -1,10 +1,11 @@
-package org.example;
+package org.szylica;
 
 import java.sql.*;
 
 public class Main {
 
     public static void main(String[] args) {
+        /*
         String sql = "select * from employees where officeCode=3";
         String url = "jdbc:mysql://localhost:3306/classicmodels";
         String user = "root";
@@ -22,5 +23,10 @@ public class Main {
         catch (SQLException e){
             e.printStackTrace();
         }
+
+         */
+
+        RegisterPage reg = new RegisterPage();
+        reg.delete();
     }
 }
