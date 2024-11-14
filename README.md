@@ -11,4 +11,4 @@
   * MySQL
 
 ### The database I will be working with was taken from
-  * https://www.mysqltutorial.org/getting-started-with-mysql/mysql-sample-database/
+  * [https://www.mysqltutorial.org/getting-started-with-mysql/mysql-sample-database/](https://www.mysqltutorial.org/wp-content/uploads/2023/10/mysqlsampledatabase.zip)
