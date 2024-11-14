@@ -20,7 +20,7 @@
 ### Clear GUI
  * Login and register page
  * Shop page for User
- * Admin should have ability to check whole batabase of their items
+ * Admin should have ability to check whole database of their items
 
 ### User and Admin Accounts
  * User should have ability to buy item from Admin's shop, quantity of item should be decreased in the database
