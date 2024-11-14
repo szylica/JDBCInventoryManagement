@@ -1,6 +1,7 @@
 # Inventory manager 
 
-## This is a repository where I will mainly be learning JDBC.
+## Work in progress
+###This is a repository where I will mainly be learning JDBC.
 
 ### Building tool:
   * Maven
