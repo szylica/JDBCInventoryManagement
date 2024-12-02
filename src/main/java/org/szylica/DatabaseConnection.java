@@ -2,12 +2,21 @@ package org.szylica;
 
 import java.sql.*;
 
+/**
+ * Class helps with connection and operations on database, here you can declare url, user and password to database
+ *
+ * @author szylica
+ */
 public class DatabaseConnection {
     private static final String url = "jdbc:mysql://localhost:3306/classicmodels";
     private static final String user = "root";
     private static final String password = "szPYa&bqH5lFShl";
 
 
+    /**
+     * Uses given in class url, user and password to create Connection to database
+     * @return Connection to database
+     */
     public Connection connect() {
         try {
             Connection connection = DriverManager.getConnection(url, user, password);
@@ -23,6 +32,10 @@ public class DatabaseConnection {
 
     //TODO: obsługa wyjątków takich jak powtarzanie się primary key, program musi sprawdzać czy nie istenieje już dany primary key
 
+    /**
+     * Opens connection with database using and execute statement from param
+     * @param stmt String local variable, which contain SQL statement which is sending to database
+     */
     public void insertRecord(String stmt){
         try(Connection connection = connect()){
             if (connection != null) {
@@ -36,7 +49,8 @@ public class DatabaseConnection {
         }
     }
 
-    public void selectRecord(String stmt){
+    //WORK IN PROGRESS
+    /*public void selectRecord(String stmt){
 
         try(Connection connection = DriverManager.getConnection(url, user, password)){
             if (connection != null) {
@@ -51,9 +65,15 @@ public class DatabaseConnection {
             e.printStackTrace();
         }
 
-    }
+    }*/
 
     // Helper method, which helps me to get name of primary key column
+
+    /**
+     * Method gets the name of the primary key column in table
+     * @param tableName name of the table we are searching in
+     * @return String value - name of the primary key column
+     */
     public String getPrimaryKeyColumnName(String tableName) {
         String primaryKeyColumn = null;
 
@@ -80,6 +100,12 @@ public class DatabaseConnection {
     }
 
     //TODO: sprawdzanie czy przekazana w argumencie tabela istnieje
+
+    /**
+     * Method searches highest value from the primary key column
+     * @param table name of the table where you are searching
+     * @return int value which is max Id value in table
+     */
     public int returnMaxId(String table){
 
 
@@ -104,7 +130,12 @@ public class DatabaseConnection {
 
     public void updateRecord(String stmt){}
 
-
+    /**
+     * Deletes all given values in given column from given table
+     * @param tableName String value - table name
+     * @param columnName String value - column name
+     * @param value String value which is gonna be deleted
+     */
     public void deleteRecord(String tableName, String columnName, Object value){
         String stmt = "DELETE FROM " + tableName + " WHERE " + columnName + " = ?";
 
