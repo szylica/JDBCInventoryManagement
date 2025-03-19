@@ -8,9 +8,9 @@ import java.sql.*;
  * @author szylica
  */
 public class DatabaseConnection {
-    private static final String url = "jdbc:mysql://localhost:3306/classicmodels";
+    private static final String url = "connection";
     private static final String user = "root";
-    private static final String password = "szPYa&bqH5lFShl";
+    private static final String password = "pass";
 
 
     /**
